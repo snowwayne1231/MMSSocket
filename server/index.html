@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      form { padding: 5px; width: 100%; }
+      form button { width: 15%; border: none; padding: 20px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+      #m { width: 80%; height: 300px; }
+      #result {width: 90%; height: 300px; margin: 0 auto;}
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="" id="fform">
+      <!-- <textarea id="m" autocomplete="off" wrap="soft">
+      {
+        "type": "query",
+        "model": "city",
+        "where": {
+            "id": [1,2,3],
+            "createdAt|between": ["2019-09-1", "2019-09-09 23:59:05"]
+        },
+        "sort": [
+          "id|desc",
+          "name|asc"
+        ],
+        "joins": ["area"]
+      }</textarea> -->
+      <!-- <textarea id="m" autocomplete="off" wrap="soft">
+      {
+        "type": "update",
+        "model": "city",
+        "where": {
+            "id": [2,6,7,8,9]
+        },
+        "data": {
+            "code": "1234"
+        }
+      }</textarea> -->
+      <!-- <textarea id="m" autocomplete="off" wrap="soft">
+      {
+        "type": "insert",
+        "model": "city",
+        "data": {
+            "code": "789"
+        }
+      }</textarea> -->
+      <textarea id="m" autocomplete="off" wrap="soft">
+      {
+        "type": "delete",
+        "model": "city",
+        "where": {
+            "code": "789"
+        }
+      }</textarea>
+      <button>Send</button>
+    </form>
+    <textarea id="result">
+
+    </textarea>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        var fform = document.getElementById('fform');
+        fform.onsubmit = function(e) {
+            e.preventDefault(); // prevents page reloading
+            var val = document.getElementById('m').value;
+            
+            try {
+                var json = JSON.parse(val);
+                if (json) {
+                    socket.emit('message', JSON.stringify(json));
+                }
+            } catch(e) {
+                console.log(val, e);
+                alert('json wrong format.');
+            }
+            
+            return false;
+        }
+
+        socket.on('message', function(msg){
+          console.log('socket on message', msg);
+          if (msg.payload) {
+            document.getElementById('result').value = JSON.stringify(msg.payload);
+          } else if (msg.error) {
+            alert(msg.error);
+          }
+        });
+    </script>
+  </body>
+</html>
+
