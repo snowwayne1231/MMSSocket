@@ -5,7 +5,10 @@ var models = require('../models/index');
 var Sequelize = require('sequelize');
 var Op = Sequelize.Op;
 var sockets = [];
-var port = 8080;
+var config = models.config;
+var port = config.launchPort;
+
+console.log(config);
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
