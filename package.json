@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "SET NODE_ENV=development&&nodemon server/index.js",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "setup-dev": "npx sequelize-cli db:migrate&&npx sequelize-cli db:seed:all",
+    "setup-pro": "npx sequelize-cli db:migrate --env production&&npx sequelize-cli db:seed:all --env production"
   },
   "author": "snow",
   "license": "MIT",

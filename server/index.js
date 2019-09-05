@@ -16,7 +16,11 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
   sockets.push(socket);
+  var address = socket.handshake.address;
+  console.log('==================================================');
   console.log('a user connected, total length: ', sockets.length);
+  console.log(`the last user address: [${address}]`);
+  console.log('==================================================');
 
   socket.on('disconnect', function(){
     sockets = sockets.filter(sk => sk != socket);

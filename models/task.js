@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     cmplt_date: DataTypes.DATE,
     cmplt_user_id: DataTypes.INTEGER,
     cause_id: DataTypes.INTEGER,
+    duration: DataTypes.INTEGER,
     number_processing: DataTypes.INTEGER,
     created_user_id: DataTypes.INTEGER
   }, {});
