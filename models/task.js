@@ -7,18 +7,19 @@ module.exports = (sequelize, DataTypes) => {
     jira_ticket: DataTypes.STRING,
     content: DataTypes.TEXT,
     cmplt_date: DataTypes.DATE,
-    cmplt_user_id: DataTypes.INTEGER,
+    operator_id_cmplt: DataTypes.INTEGER,
     cause_id: DataTypes.INTEGER,
     duration: DataTypes.INTEGER,
     number_processing: DataTypes.INTEGER,
-    created_user_id: DataTypes.INTEGER
+    operator_id_created: DataTypes.INTEGER
   }, {});
   task.associate = function(models) {
     models.task.hasOne(models.hashtag, {foreignKey: 'id',sourceKey: 'hashtag_id'});
     models.task.hasOne(models.monitor, {foreignKey: 'id',sourceKey: 'monitor_id'});
     models.task.hasOne(models.cause, {foreignKey: 'id',sourceKey: 'cause_id'});
-    models.task.hasOne(models.operator, {foreignKey: 'id',sourceKey: 'created_user_id'});
-    models.task.hasOne(models.operator, {foreignKey: 'id',sourceKey: 'cmplt_user_id'});
+    models.task.hasOne(models.operator, {foreignKey: 'id',sourceKey: 'operator_id_created'});
+    models.task.hasOne(models.operator, {foreignKey: 'id',sourceKey: 'operator_id_cmplt'});
+    models.task.hasMany(models.task_processing, {foreignKey: 'task_id',sourceKey: 'id'});
   };
   return task;
 };

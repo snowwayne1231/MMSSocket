@@ -14,14 +14,14 @@ module.exports = {
       content: {
         type: Sequelize.STRING
       },
-      processing_at: {
-        type: Sequelize.DATE
+      date: {
+        type: Sequelize.DATEONLY
       },
       result: {
         type: Sequelize.INTEGER
       },
-      result_at: {
-        type: Sequelize.DATE
+      result_date: {
+        type: Sequelize.DATEONLY
       },
       operator_id: {
         type: Sequelize.INTEGER

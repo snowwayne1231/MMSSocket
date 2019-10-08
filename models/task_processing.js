@@ -3,9 +3,9 @@ module.exports = (sequelize, DataTypes) => {
   const task_processing = sequelize.define('task_processing', {
     task_id: DataTypes.INTEGER,
     content: DataTypes.STRING,
-    processing_at: DataTypes.DATE,
+    date: DataTypes.DATEONLY,
     result: DataTypes.INTEGER,
-    result_at: DataTypes.DATE,
+    result_date: DataTypes.DATEONLY,
     operator_id: DataTypes.INTEGER
   }, {});
   task_processing.associate = function(models) {

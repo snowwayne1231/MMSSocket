@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       hashtag_id: {
         type: Sequelize.INTEGER
@@ -24,9 +24,9 @@ module.exports = {
         type: Sequelize.TEXT
       },
       cmplt_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
-      cmplt_user_id: {
+      operator_id_cmplt: {
         type: Sequelize.INTEGER
       },
       cause_id: {
@@ -35,7 +35,7 @@ module.exports = {
       number_processing: {
         type: Sequelize.INTEGER
       },
-      created_user_id: {
+      operator_id_created: {
         type: Sequelize.INTEGER
       },
       createdAt: {
